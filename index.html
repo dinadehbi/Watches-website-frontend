@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+
+    <title>Watch</title>
+
+</head>
+<body>
+  <section>
+    <header>
+        <nav>
+            <button id="home"><a href="#">Home</a></button>
+            <a href="#">About</a>
+            <p class="logo">Watch</p>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <br>
+    <div class="container1">
+        <h1>Watch Brand Name</h1>
+        <p>Type of the watch</p>
+    </div>
+    <br>
+    <div class="watches-container">
+        <img src="/images/IW388101-Front-removebg-preview 1 (1).svg" class="watch-image">
+        <img src="/images/last-watch.svg" class="watch-image" id="WC-watch">
+        <img src="/images/watch1.svg" class="watch-image">
+    </div>
+    <div class="scroll-indicator" onclick="scrollToSection()">
+      <div id="line"></div>
+      <p>SCROLL</p>
+    </div>
+</section>
+
+<script>
+let currentIndex = 0;
+const images = document.querySelectorAll('.watch-image');
+
+function changePosition() {
+  images.forEach((img, index) => {
+    img.style.transition = 'transform 1s ease, margin-top 1s ease';  // Synchronize all images
+    img.style.transform = 'scale(1)';
+    img.style.marginTop = '0';  // Reset margin for all images
+  });
+
+  const lastIndex = (currentIndex + 1) % images.length;
+  const nextIndex = (currentIndex + 2) % images.length;
+
+  // Set new order
+  images[0].style.order = lastIndex;
+  images[1].style.order = currentIndex;
+  images[2].style.order = nextIndex;
+
+  // Animate the images
+  images[currentIndex].style.transform = 'scale(1.2)';
+  images[currentIndex].style.marginTop = '50px';  // Center image moves down a bit
+
+  images[lastIndex].style.marginTop = '-50px';  // Left image moves up
+  images[nextIndex].style.marginTop = '-50px';  // Right image moves up
+
+  currentIndex = (currentIndex + 1) % images.length;
+}
+
+// Initial position setup
+images[0].style.order = 0;
+images[1].style.order = 1;
+images[2].style.order = 2;
+
+// Start animation every 5 seconds
+setInterval(changePosition, 5000);
+
+function scrollToSection() {
+  document.querySelector('.content').scrollIntoView({ behavior: 'smooth' });
+}
+
+
+
+
+
+
+</script>
+    
+    
+</body>
+</html>
